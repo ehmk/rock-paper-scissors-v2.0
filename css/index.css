@@ -11,16 +11,30 @@ body {
     justify-items: center;
 }
 
+#score {
+    margin-top:5em;
+    border-style: solid;
+    border-color: white;
+    padding: 2em;
+}
+
 #results {
     margin: 5em;
     height: 50%;
 }
 
 button {
-    margin: 25px;
+    margin: 20px;
     height: 50%;
-    width: 50%;
+    width: 25%;
     font-size: 25px;
-    border-radius: 15px;
+    border-color: white;
+    background-color: black;
+    color: white;
+}
+
+button:hover {
+    border-color:aqua;
+    color:aqua;
 }
 

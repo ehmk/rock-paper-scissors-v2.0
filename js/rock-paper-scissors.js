@@ -12,7 +12,7 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let draws = 0;
 
-// Array of weapons used for the game
+// Array of weapons used for the AI to choose from
 const weapons = ['rock', 'paper', 'scissors'];
 
 // Generates a random whole number 
@@ -69,54 +69,35 @@ function checkForWinner() {
         resultsDiv.textContent = 'You WON!';
         playerWinCount = 0;
         computerWinCount = 0;
-        return;
     } else if (computerWinCount >= 5) {
         resultsDiv.textContent = 'You LOST! You suck!';
         playerWinCount = 0;
         computerWinCount = 0;
-        return;
     }
+}
+
+function weaponClickEvent(weapon) {
+    currentRound = playRound(weapon, computerPlay());
+    if (currentRound === 'win') {
+        playerWinCount++;
+    } else if (currentRound === 'loss') {
+        computerWinCount++;
+    } else {
+        draws++;
+    }
+    displayScore(playerWinCount, computerWinCount);
+    checkForWinner();
 }
 
 function game() {
     rock.addEventListener('click', () => {
-        currentRound = playRound('rock', computerPlay());
-        if (currentRound === 'win') {
-            playerWinCount++;
-        } else if (currentRound === 'loss') {
-            computerWinCount++;
-        } else {
-            draws++;
-        }
-        displayScore(playerWinCount, computerWinCount);
-
-        checkForWinner();
+        weaponClickEvent('rock');
     });
     paper.addEventListener('click', () => {
-        currentRound = playRound('paper', computerPlay());
-        if (currentRound === 'win') {
-            playerWinCount++;
-        } else if (currentRound === 'loss') {
-            computerWinCount++;
-        } else {
-            draws++;
-        }
-        displayScore(playerWinCount, computerWinCount);
-
-        checkForWinner();
+        weaponClickEvent('paper');
     });
     scissors.addEventListener('click', () => {
-        currentRound = playRound('scissors', computerPlay());
-        if (currentRound === 'win') {
-            playerWinCount++;
-        } else if (currentRound === 'loss') {
-            computerWinCount++;
-        } else {
-            draws++;
-        }
-        displayScore(playerWinCount, computerWinCount);
-
-        checkForWinner();
+        weaponClickEvent('scissors');
     });
 
 }
