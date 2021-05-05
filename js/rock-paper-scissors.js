@@ -64,10 +64,23 @@ function displayScore(playerScore, computerScore) {
     scoreDiv.textContent = `Player: ${playerScore} | Computer ${computerScore}`;
 }
 
+function checkForWinner() {
+    if (playerWinCount >= 5) {
+        resultsDiv.textContent = 'You WON!';
+        playerWinCount = 0;
+        computerWinCount = 0;
+        return;
+    } else if (computerWinCount >= 5) {
+        resultsDiv.textContent = 'You LOST! You suck!';
+        playerWinCount = 0;
+        computerWinCount = 0;
+        return;
+    }
+}
+
 function game() {
     rock.addEventListener('click', () => {
         currentRound = playRound('rock', computerPlay());
-        console.log(currentRound);
         if (currentRound === 'win') {
             playerWinCount++;
         } else if (currentRound === 'loss') {
@@ -77,21 +90,10 @@ function game() {
         }
         displayScore(playerWinCount, computerWinCount);
 
-        if (playerWinCount >= 5) {
-            resultsDiv.textContent = 'You won!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        } else if (computerWinCount >= 5) {
-            resultsDiv.textContent = 'You lost!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        }
+        checkForWinner();
     });
     paper.addEventListener('click', () => {
         currentRound = playRound('paper', computerPlay());
-        console.log(currentRound);
         if (currentRound === 'win') {
             playerWinCount++;
         } else if (currentRound === 'loss') {
@@ -101,21 +103,10 @@ function game() {
         }
         displayScore(playerWinCount, computerWinCount);
 
-        if (playerWinCount >= 5) {
-            resultsDiv.textContent = 'You won!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        } else if (computerWinCount >= 5) {
-            resultsDiv.textContent = 'You lost!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        }
+        checkForWinner();
     });
     scissors.addEventListener('click', () => {
         currentRound = playRound('scissors', computerPlay());
-        console.log(currentRound);
         if (currentRound === 'win') {
             playerWinCount++;
         } else if (currentRound === 'loss') {
@@ -125,17 +116,7 @@ function game() {
         }
         displayScore(playerWinCount, computerWinCount);
 
-        if (playerWinCount >= 5) {
-            resultsDiv.textContent = 'You won!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        } else if (computerWinCount >= 5) {
-            resultsDiv.textContent = 'You lost!';
-            playerWinCount = 0;
-            computerWinCount = 0;
-            return;
-        }
+        checkForWinner();
     });
 
 }
