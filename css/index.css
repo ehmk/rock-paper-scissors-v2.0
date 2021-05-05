@@ -1,0 +1,26 @@
+body {
+    background-color: black;
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 25px;
+}
+
+#grid-container {
+    display: grid;
+    justify-items: center;
+}
+
+#results {
+    margin: 5em;
+    height: 50%;
+}
+
+button {
+    margin: 25px;
+    height: 50%;
+    width: 50%;
+    font-size: 25px;
+    border-radius: 15px;
+}
+
