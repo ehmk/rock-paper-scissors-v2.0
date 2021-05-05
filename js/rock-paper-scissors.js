@@ -76,6 +76,7 @@ function checkForWinner() {
     }
 }
 
+// Click event for the buttons (Plays a round, iterates on player or PC win count, updates score, checks for a winner)
 function weaponClickEvent(weapon) {
     currentRound = playRound(weapon, computerPlay());
     if (currentRound === 'win') {
@@ -89,6 +90,7 @@ function weaponClickEvent(weapon) {
     checkForWinner();
 }
 
+// Main game 
 function game() {
     rock.addEventListener('click', () => {
         weaponClickEvent('rock');
