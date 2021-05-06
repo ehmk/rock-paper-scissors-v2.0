@@ -23,10 +23,12 @@ body {
     height: 50%;
 }
 
+#player-choice {
+    display: flex;
+}
+
 button {
     margin: 20px;
-    height: 50%;
-    width: 25%;
     font-size: 25px;
     border-color: white;
     background-color: black;

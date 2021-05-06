@@ -7,6 +7,8 @@ scoreDiv.textContent = 'Current score';
 let rock = document.querySelector('#rock');
 let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
+let weaponsBtns = document.querySelectorAll('.weapons');
+let playerChoice = document.querySelector('#player-choice');
 
 let playerWinCount = 0;
 let computerWinCount = 0;
@@ -60,19 +62,72 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function generateWeaponBtns() {
+    let rock = document.createElement('button');
+    let paper = document.createElement('button');
+    let scissors = document.createElement('button');
+
+    rock.textContent = 'Rock';
+    paper.textContent = 'Paper';
+    scissors.textContent = 'Scissors';
+    
+    rock.setAttribute('id', 'rock');
+    paper.setAttribute('id', 'paper');
+    scissors.setAttribute('id', 'scissors');
+
+    rock.addEventListener('click', () => {
+        weaponClickEvent('rock');
+    });
+    paper.addEventListener('click', () => {
+        weaponClickEvent('paper');
+    });
+    scissors.addEventListener('click', () => {
+        weaponClickEvent('scissors');
+    });
+
+    playerChoice.appendChild(rock);
+    playerChoice.appendChild(paper);
+    playerChoice.appendChild(scissors);
+}
+
+function removeWeaponsBtns(parentNode) {
+    while(parentNode.firstChild) {
+        parentNode.removeChild(parentNode.firstChild);
+    }
+}
+
+function generateResetBtn() {
+    let resetBtn = document.createElement('button');
+    resetBtn.textContent = 'Play again';
+    resetBtn.addEventListener('click', () => {
+        resetGame();
+        resultsDiv.textContent = "Welcome to the thunderdome";
+        playerChoice.removeChild(resetBtn);
+        generateWeaponBtns();
+    });
+    playerChoice.appendChild(resetBtn);
+}
+
+function resetGame() {
+    playerWinCount = 0;
+    computerWinCount = 0;
+    draws = 0;
+    displayScore(playerWinCount, computerWinCount);
+}
+
 function displayScore(playerScore, computerScore) {
-    scoreDiv.textContent = `Player: ${playerScore} | Computer ${computerScore}`;
+    scoreDiv.textContent = `Player: ${playerScore} | Computer ${computerScore} | Draws ${draws}`;
 }
 
 function checkForWinner() {
     if (playerWinCount >= 5) {
-        resultsDiv.textContent = 'You WON!';
-        playerWinCount = 0;
-        computerWinCount = 0;
+        resultsDiv.textContent = 'You WON! Play again?';
+        removeWeaponsBtns(playerChoice);
+        generateResetBtn();
     } else if (computerWinCount >= 5) {
-        resultsDiv.textContent = 'You LOST! You suck!';
-        playerWinCount = 0;
-        computerWinCount = 0;
+        resultsDiv.textContent = 'You LOST! Play again?';
+        removeWeaponsBtns(playerChoice);
+        generateResetBtn();
     }
 }
 
@@ -92,16 +147,8 @@ function weaponClickEvent(weapon) {
 
 // Main game 
 function game() {
-    rock.addEventListener('click', () => {
-        weaponClickEvent('rock');
-    });
-    paper.addEventListener('click', () => {
-        weaponClickEvent('paper');
-    });
-    scissors.addEventListener('click', () => {
-        weaponClickEvent('scissors');
-    });
-
+    generateWeaponBtns();
 }
+
 
 game();
