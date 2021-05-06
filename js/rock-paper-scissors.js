@@ -101,7 +101,6 @@ function generateResetBtn() {
     resetBtn.textContent = 'Play again';
     resetBtn.addEventListener('click', () => {
         resetGame();
-        resultsDiv.textContent = "Welcome to the thunderdome";
         playerChoice.removeChild(resetBtn);
         generateWeaponBtns();
     });
@@ -112,6 +111,7 @@ function resetGame() {
     playerWinCount = 0;
     computerWinCount = 0;
     draws = 0;
+    resultsDiv.textContent = "Welcome to the thunderdome";
     displayScore(playerWinCount, computerWinCount);
 }
 
